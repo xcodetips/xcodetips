@@ -15,20 +15,44 @@ video {
   </head>
   <body>
     <div class="container">
-      <div class="row mb-3 mt-3 text-center">
+      <div class="row mb-5 mt-3 text-center">
         <div class="col">
           <h1><a href="xcodetips.com">Xcode Tips</a></h1>
         </div>
       </div>
 
+      <div class="row align-items-center mb-2">
+        <div class="col col-auto">
+          <h3>
+              <a href="http://xcodetips.com/tips/<%= tip['file_name'] %>.html">
+                <%= tip['title'] %><% if tip['shortcut'] %>: <%= tip['shortcut'] %><% end %>
+              </a>
+          </h3>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col">
-          <video autoplay loop poster="https://s3.eu-west-2.amazonaws.com/xcode-tips/coming-soon.jpg">
+          <video autoplay loop poster="https://s3.amazonaws.com/xcodetips.com/assets/<%= tip['file_name'] %>.jpg">
             <!-- Do I acutally need the .webm? -->
             <!-- <source src="path/to/video.webm" type="video/webm; codecs=vp9,vorbis" /> -->
-            <source src="https://s3.eu-west-2.amazonaws.com/xcode-tips/coming-soon.mp4" type="video/mp4" />
-            <source src="https://s3.eu-west-2.amazonaws.com/xcode-tips/coming-soon.gif" type="gif" />
+            <source src="https://s3.amazonaws.com/xcodetips.com/assets/<%= tip['file_name'] %>.mp4" type="video/mp4" />
+            <source src="https://s3.amazonaws.com/xcodetips.com/assets/<%= tip['file_name'] %>.gif" type="gif" />
           </video>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col">
+          <% if tip['description'] %>
+            <p><em><%= tip['description'] %></em></p>
+          <% end %>
+          <% if tip['project']['name'] && tip['project']['url'] %>
+            <p>Source code: <a href="<%= tip['project']['url'] %>" target="_blank"><%= tip['project']['name'] %></a></p>
+          <% end %>
+          <% if tip['publish_date'] %>
+            <p>Published date: <%= tip['publish_date'] %></p>
+          <% end %>
         </div>
       </div>
 
@@ -49,6 +73,24 @@ video {
             </div>
             <button type="submit" class="btn btn-primary mb-2">Subscribe</button>
           </form>
+        </div>
+      </div>
+
+      <!-- All Tips -->
+      <div class="row mt-5 mb-3">
+        <div class="col-12">
+          <h3>All Tips</h3>
+        </div>
+        <div class="col-12">
+          <ul class="list-unstyled">
+            <% tips.each do |list_tip| %>
+              <li>
+                <a href="http://xcodetips.com/tips/<%= list_tip['file_name'] %>.html">
+                  <%= list_tip['title'] %><% if list_tip['shortcut'] %>: <%= list_tip['shortcut'] %><% end %>
+                </a>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
 
