@@ -1,4 +1,5 @@
 require 'erb'
+include ERB::Util
 require 'fileutils'
 require 'yaml'
 

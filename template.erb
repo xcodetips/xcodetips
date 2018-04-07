@@ -81,6 +81,14 @@ video {
         </div>
       </div>
 
+      <div class="row mt-0">
+        <div class="col">
+          <a class="twitter-share-button"
+             href="https://twitter.com/intent/tweet?text=<%= tip['title'] %>%20in%20Xcode&via=_xcodetips&url=<%= url_encode("http://xcodetips.com/tips/#{tip['file_name']}.html") %>">
+            Tweet</a>
+        </div>
+      </div>
+
       <!-- Subscribe -->
       <div class="row mt-5 mb-2">
         <div class="col-12 text-center">
@@ -140,5 +148,24 @@ gtag('js', new Date());
 
 gtag('config', 'UA-43554041-11');
     </script>
+
+    <!-- Twitter sharing -->
+    <!-- https://dev.twitter.com/web/javascript/loading -->
+    <script>window.twttr = (function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0],
+  t = window.twttr || {};
+if (d.getElementById(id)) return t;
+js = d.createElement(s);
+js.id = id;
+js.src = "https://platform.twitter.com/widgets.js";
+fjs.parentNode.insertBefore(js, fjs);
+
+t._e = [];
+t.ready = function(f) {
+  t._e.push(f);
+};
+
+return t;
+}(document, "script", "twitter-wjs"));</script>
   </body>
 </html>
