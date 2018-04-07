@@ -1,9 +1,8 @@
 require 'erb'
+require 'fileutils'
 require 'yaml'
 
 def generate_tip_page(tip, tips, output_dir_path, output_name = nil)
-  puts "Generating page for #{tip['title']}"
-
   output_name ||= "#{tip['file_name']}.html"
 
   File.open("#{output_dir_path}/#{output_name}", 'w') do |file|
@@ -12,8 +11,6 @@ def generate_tip_page(tip, tips, output_dir_path, output_name = nil)
 end
 
 def generate_index(tip, tips, output_dir_path)
-  puts "Generating index using #{tip['title']}"
-
   generate_tip_page(tip, tips, output_dir_path, 'index.html')
 end
 
@@ -30,8 +27,16 @@ if tips.empty?
 end
 
 output_dir_path = "build"
-`mkdir #{output_dir_path}`
-`mkdir #{output_dir_path}/tips`
 
+FileUtils.remove_dir output_dir_path if File.exists? output_dir_path
+
+FileUtils.mkdir output_dir_path
+FileUtils.mkdir "#{output_dir_path}/tips"
+
+tips.each do |tip|
+  puts "Generating page for #{tip['title']}"
+  generate_tip_page(tip, tips, "#{output_dir_path}/tips")
+end
+
+puts "Generating index using #{tips.first['title']}"
 generate_index(tips.first, tips, output_dir_path)
-tips.each { |tip| generate_tip_page(tip, tips, "#{output_dir_path}/tips") }
