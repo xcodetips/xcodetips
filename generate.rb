@@ -15,7 +15,9 @@ def generate_index(tip, tips, output_dir_path)
   generate_tip_page(tip, tips, output_dir_path, 'index.html')
 end
 
-tips = YAML.load_file('./catalog.yml')['tips']
+source = YAML.load_file('./catalog.yml')
+tips = source['tips']
+drafts = source['drafts']
 
 if tips.nil?
   puts "No input"
@@ -41,3 +43,12 @@ end
 
 puts "Generating index using #{tips.first['title']}"
 generate_index(tips.first, tips, output_dir_path)
+
+if drafts.nil? == false
+  drafts.each do |draft_tip|
+    puts "Generating draft page for #{draft_tip['title']}"
+    # Notice how we're still just passing the tips array here. This is
+    # intentional to avoid having the entire drafts content leaking
+    generate_tip_page(draft_tip, tips, "#{output_dir_path}/tips")
+  end
+end
