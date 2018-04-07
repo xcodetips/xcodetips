@@ -1,5 +1,30 @@
-<html>
+<html lang="en-US">
   <head>
+    <title>Xcode Tips</title>
+    <meta name="description" content="Tips and workflows to use Xcode more effectively." />
+    <meta name="author" content="Giovanni Gio Lodi">
+    <meta charset="utf-8" />
+
+    <!-- It would be nice to have this as the GIF, for now the image will do though -->
+    <!-- Maybe this can help https://stackoverflow.com/questions/31216481/how-does-giphy-share-gifs-to-facebook-2015-not-flash-anymore -->
+    <meta property="og:title" content="Xcode Tips" />
+    <% if tip['description'] %>
+      <meta property="og:description" content="<%= tip['description'] %>" />
+    <% else %>
+      <meta property="og:description" content="Tips and workflows to use Xcode more effectively." />
+    <% end %>
+    <meta property="og:image" content="https://s3.amazonaws.com/xcodetips.com/assets/<%= tip['file_name'] %>.jpg"/>
+    <meta property="og:site_name" content="Xcode Tips" />
+    <meta property="og:url" content="http://xcodetips.com/tips/<%= tip['file_name'] %>.html" />
+    <meta property="og:type" content="article" />
+
+    <!-- It would be good to use the player card, but this is enough to get started -->
+    <!-- See https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/player-card -->
+    <!-- Note that Twitter cards can read most of the Open Graph meta, so we don't need to add all the info -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@_xcodetips" />
+    <meta name="twitter:creator" content="@mokagio" />
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
 
     <style>
