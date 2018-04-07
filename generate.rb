@@ -29,6 +29,8 @@ if tips.empty?
   exit 2
 end
 
+tips = tips.sort_by { |tip| tip['publish_date'] || '' }.reverse
+
 output_dir_path = "build"
 
 FileUtils.remove_dir output_dir_path if File.exists? output_dir_path
