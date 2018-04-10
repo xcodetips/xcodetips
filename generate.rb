@@ -13,10 +13,17 @@ def generate_tip_page(tip, tips, output_dir_path, title = nil, output_name = nil
 end
 
 def generate_index(tip, tips, output_dir_path)
-  generate_tip_page(tip, tips, output_dir_path, 'index.html')
+  generate_tip_page(tip, tips, output_dir_path, 'Xcode Tips', 'index.html')
 end
 
-source = YAML.load_file('./catalog.yml')
+catalog_path = ARGV[0] || './catalog.yml'
+
+unless File.exists? catalog_path
+  puts "Could not find file at #{catalog_path}"
+  exit 1
+end
+
+source = YAML.load_file(catalog_path)
 tips = source['tips']
 drafts = source['drafts']
 
