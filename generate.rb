@@ -3,8 +3,9 @@ include ERB::Util
 require 'fileutils'
 require 'yaml'
 
-def generate_tip_page(tip, tips, output_dir_path, output_name = nil)
+def generate_tip_page(tip, tips, output_dir_path, title = nil, output_name = nil)
   output_name ||= "#{tip['file_name']}.html"
+  title ||= "#{tip['title']} | Xcode Tips"
 
   File.open("#{output_dir_path}/#{output_name}", 'w') do |file|
     file.write ERB.new(File.read('./template.erb')).result(binding)
