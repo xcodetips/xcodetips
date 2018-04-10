@@ -137,7 +137,7 @@ video {
           </div>
           <div class="col-12">
             <ul class="list-unstyled">
-              <% tips.each do |list_tip| %>
+              <% tips.reverse.each do |list_tip| %>
                 <li>
                   <a href="http://xcodetips.com/tips/<%= list_tip['file_name'] %>.html">
                     <%= list_tip['title'] %><% if list_tip['shortcut'] %>: <%= list_tip['shortcut'] %><% end %>
